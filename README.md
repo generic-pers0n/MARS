@@ -1,4 +1,16 @@
 # MARS
+
+## Fork
+**This is a modified version of MARS and is not the original. For the original, please see https://github.com/dpetersanderson/MARS**.
+
+This fork includes the following changes:
+
+- A new Gradle build system with some code cleanups and other fixes from [ste-lam](https://github.com/ste-lam).
+- Usage of the FlatLaf theme by default, falling back to the default Swing theme if that fails.
+- On macOS, the menu bar has been moved to the top of the screen to follow other programs.
+
+## Original Info
+
 MARS (official) MIPS Assembler and Runtime Simulator
 
  MARS is a lightweight interactive development environment (IDE) for programming in MIPS assembly language, intended for educational-level use with Patterson and Hennessy's Computer Organization and Design.
