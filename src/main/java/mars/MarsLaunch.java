@@ -245,7 +245,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
              System.err.println("Failed to initialize FlatLaf light theme, will use Swing default.");
          }
 
-         // System.setProperty("apple.laf.useScreenMenuBar", "true"); // Puts MARS menu on Mac OS menu bar
+         System.setProperty("apple.laf.useScreenMenuBar", "true"); // Puts MARS menu on Mac OS menu bar
          new MarsSplashScreen(splashDuration).showSplash();
          SwingUtilities.invokeLater(
                new Runnable() {
