@@ -1,4 +1,5 @@
    package mars;
+   import com.formdev.flatlaf.FlatLightLaf;
    import mars.venus.*;
    import mars.util.*;
    import mars.mips.dump.*;
@@ -236,6 +237,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    	// launching the GUI-fronted integrated development environment.
    	
       private void launchIDE() {
+         try {
+             // Setup the look and feel for MARS
+             FlatLightLaf.setup();
+             UIManager.setLookAndFeel(new FlatLightLaf());
+         } catch (Exception e) {
+             System.err.println("Failed to initialize FlatLaf light theme, will use Swing default.");
+         }
+
          // System.setProperty("apple.laf.useScreenMenuBar", "true"); // Puts MARS menu on Mac OS menu bar
          new MarsSplashScreen(splashDuration).showSplash();
          SwingUtilities.invokeLater(

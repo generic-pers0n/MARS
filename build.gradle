@@ -11,6 +11,10 @@ application {
     mainClass = 'Mars'
 }
 
+dependencies {
+    implementation 'com.formdev:flatlaf:3.7'
+}
+
 java {
     withJavadocJar()
     withSourcesJar()
