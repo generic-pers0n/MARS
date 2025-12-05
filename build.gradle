@@ -27,9 +27,10 @@ javadoc {
 }
 
 jar {
-    // From https://stackoverflow.com/a/60669623, also found in FrostWire's
-    // build.gradle for desktop.
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    // From FrostWire's build.gradle for desktop.
+    // It seems like it came from https://stackoverflow.com/a/60669623 and was
+    // later modified to work with newer versions of Gradle.
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
 
     manifest {
         attributes['Implementation-Title'] = project.name
