@@ -27,6 +27,15 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 (MIT license, http://www.opensource.org/licenses/mit-license.html)
  */
 
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+import mars.Globals;
+
+import javax.swing.*;
+
 /**
  * Portal to Mars
  * 
@@ -34,9 +43,39 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * @version March 2006
  **/
 
-    public class Mars {
-       public static void main(String[] args) {
-         new mars.MarsLaunch(args);
-      }
-   } 
+public class Mars extends Application {
+    public static void main(String[] args) {
+        String useJavaFx = System.getenv("MARS_USE_JAVAFX");
+        if (useJavaFx != null && useJavaFx.equals("1") && args.length == 0) {
+            launch(args);
+        } else {
+            new mars.MarsLaunch(args);
+        }
+    }
 
+    @Override
+    public void start(Stage stage) throws Exception {
+        Dialog<String> warningDialog = new Dialog<>();
+        warningDialog.setContentText(
+            "You have enabled the experimental JavaFX GUI. This GUI is incomplete and may contain bugs.\n\n" +
+            "If you did not expect this, please unset the MARS_USE_JAVAFX environment variable."
+        );
+        warningDialog.setTitle("MARS JavaFX GUI Enabled");
+        ButtonType buttonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        warningDialog.getDialogPane().getButtonTypes().add(buttonType);
+        warningDialog.showAndWait();
+
+        Group mainGroup = new Group();
+        Scene mainScene = new Scene(mainGroup);
+
+        // Add a dummy menu item and menubar
+        Menu dummy = new Menu("File");
+        MenuItem dummyItem = new MenuItem("Dummy Action");
+        dummy.getItems().add(dummyItem);
+        mainGroup.getChildren().add(new MenuBar(dummy));
+
+        stage.setTitle("MARS " + Globals.version + " (JavaFX)");
+        stage.setScene(mainScene);
+        stage.show();
+    }
+}
