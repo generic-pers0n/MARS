@@ -2,6 +2,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
 }
 
 version = '4.6'
@@ -9,6 +10,10 @@ version = '4.6'
 application {
     // Define the main class for the application.
     mainClass = 'Mars'
+}
+
+javafx {
+    modules = ['javafx.controls']
 }
 
 dependencies {
